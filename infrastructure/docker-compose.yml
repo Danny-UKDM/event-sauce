@@ -1,0 +1,13 @@
+version: "3.4"
+services:
+  localstack:
+    image: localstack/localstack:0.10.8
+    ports:
+      - "3020:8080"
+      - "4569:4569" #DynamoDB
+    environment:
+      - SERVICES=${SERVICES-dynamodb}
+      - DEBUG=${DEBUG- }
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DEFAULT_REGION=eu-west-1
+    restart: unless-stopped
