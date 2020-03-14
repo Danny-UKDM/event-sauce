@@ -68,9 +68,9 @@ jobs:
             CHANGESET_NAME=$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM
             S3_PREFIX=event-sauce-api/$CHANGESET_NAME
             aws cloudformation package --template-file template.yaml \
-               --s3-bucket $CF_DEPLOYMENT_S3_BUCKET \
-               --s3-prefix $S3_PREFIX \
-               --output-template-file template-processed.yaml
+              --s3-bucket $CF_DEPLOYMENT_S3_BUCKET \
+              --s3-prefix $S3_PREFIX \
+              --output-template-file template-processed.yaml
             aws s3 cp template-processed.yaml s3://$CF_DEPLOYMENT_S3_BUCKET/$S3_PREFIX/
             aws cloudformation create-change-set \
               --template-url https://s3-eu-west-1.amazonaws.com/$CF_DEPLOYMENT_S3_BUCKET/$S3_PREFIX/template-processed.yaml \
@@ -86,12 +86,7 @@ workflows:
       - test-and-package
       - e2e-test
       - deploy:
-          name: deploy-dev
-          context: aws-cf-deployment-dev
-          requires:
-            - test-and-package
-      - deploy:
-          name: deploy-prod
+          name: deploy
           is_prod: true
           context: aws-cf-deployment-prod
           requires:
