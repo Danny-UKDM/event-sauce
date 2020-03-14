@@ -1,4 +1,4 @@
-# Event-Sauce
+# Event-Sauce [![CircleCI](https://circleci.com/gh/Danny-UKDM/event-sauce/tree/master.svg?style=svg&circle-token=41ca009b555604af36ce3887afa8e1cb64afb62c)](https://circleci.com/gh/Danny-UKDM/event-sauce/tree/master)
 
 Just playing with AWS Serverless and CQRS/Event Sourcing.
 
