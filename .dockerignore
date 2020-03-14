@@ -1,0 +1,10 @@
+.dockerignore
+.*/
+Dockerfile
+artifacts/
+e2e/
+publish/
+support/
+tools/
+**/bin/
+**/obj/
