@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Test and package
+          name: Test and Package
           command: |
             export PATH="$PATH:/root/.dotnet/tools"
             dotnet tool install -g Cake.Tool
@@ -15,8 +15,8 @@ jobs:
             root: .
             paths:
               - template.yaml
-              - openapi
               - publish
+
   e2e-test:
     machine:
       enabled: true
@@ -27,7 +27,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install dependencies
+          name: Install Dependencies
           command: |
             wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb
             sudo dpkg -i packages-microsoft-prod.deb
@@ -43,7 +43,7 @@ jobs:
             chmod 755 dotnet-cake
             echo 'export PATH=$PATH:/home/circleci/.local/bin' >> $BASH_ENV
       - run:
-          name: E2E Tests
+          name: Run E2E Tests
           command: |
             ./dotnet-cake --target=Test-E2E
       - run:
@@ -60,10 +60,10 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: Install awscli
+          name: Install AWS CLI
           command: sudo pip install awscli
       - run:
-          name: Create change set
+          name: Create Change Set
           command: |
             CHANGESET_NAME=$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM
             S3_PREFIX=event-sauce-api/$CHANGESET_NAME
@@ -76,8 +76,7 @@ jobs:
               --template-url https://s3-eu-west-1.amazonaws.com/$CF_DEPLOYMENT_S3_BUCKET/$S3_PREFIX/template-processed.yaml \
               --stack-name event-sauce \
               --change-set-name $CHANGESET_NAME \
-              --description "Build: $CIRCLE_BUILD_URL" \
-              --capabilities CAPABILITY_IAM
+              --description "Build: $CIRCLE_BUILD_URL"
 
 workflows:
   version: 2.1
@@ -85,3 +84,12 @@ workflows:
     jobs:
       - test-and-package
       - e2e-test
+      - deploy:
+          name: deploy-prod
+          context: aws-deployment
+          requires:
+            - test-and-package
+            - e2e-test
+          filters:
+            branches:
+              only: master
