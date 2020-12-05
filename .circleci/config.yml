@@ -1,8 +1,11 @@
 version: 2.1
+orbs:
+  aws-cli: circleci/aws-cli@1.3.1
+
 jobs:
   test-and-package:
     docker:
-      - image: mcr.microsoft.com/dotnet/core/sdk:2.2.204
+      - image: mcr.microsoft.com/dotnet/sdk:3.1
     steps:
       - checkout
       - run:
@@ -20,24 +23,24 @@ jobs:
   e2e-test:
     machine:
       enabled: true
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202010-01
     environment:
-      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
     steps:
       - checkout
       - run:
           name: Install Dependencies
           command: |
-            wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb
+            wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
             sudo dpkg -i packages-microsoft-prod.deb
-            sudo apt-get install apt-transport-https
             sudo apt-get update
-            sudo apt-get install dotnet-sdk-2.2=2.2.204-1
-            pyenv global 3.7.0
+            sudo apt-get install apt-transport-https
+            sudo apt-get install dotnet-sdk-3.1
+            sudo apt-get install python-is-python3
             pip install --upgrade pip
             pip install --user awscli
-            pip install --user aws-sam-cli==0.37.0
+            pip install --user aws-sam-cli
             dotnet tool install --tool-path . Cake.Tool
             dotnet tool install --tool-path . trx2junit
             chmod 755 dotnet-cake
@@ -54,14 +57,12 @@ jobs:
           path: ./artifacts/
 
   deploy:
-    docker:
-     - image: circleci/python:3-node
+    executor: aws-cli/default
     steps:
       - attach_workspace:
-          at: .
-      - run:
-          name: Install AWS CLI
-          command: sudo pip install awscli
+          at: .q
+      - aws-cli/setup:
+          version: '2'
       - run:
           name: Create Change Set
           command: |
@@ -76,19 +77,21 @@ jobs:
               --template-url https://s3-eu-west-1.amazonaws.com/$CF_DEPLOYMENT_S3_BUCKET/$S3_PREFIX/template-processed.yaml \
               --stack-name event-sauce \
               --change-set-name $CHANGESET_NAME \
-              --description "Build: $CIRCLE_BUILD_URL"
+              --description "Created by CircleCI $CIRCLE_BUILD_URL"
 
 workflows:
   version: 2.1
   test-and-deploy:
     jobs:
       - test-and-package
-      - e2e-test
-      - deploy:
-          name: deploy-prod
-          context: aws-deployment
+      - e2e-test:
+          name: e2e-test
           requires:
             - test-and-package
+      - deploy:
+          name: aws-deploy
+          context: aws-deployment
+          requires:
             - e2e-test
           filters:
             branches:
