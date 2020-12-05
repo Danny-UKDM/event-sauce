@@ -1,5 +1,5 @@
-#addin "Cake.Docker&version=0.10.1"
-#addin "Cake.FileHelpers&version=3.2.1"
+#addin "Cake.Docker&version=0.11.1"
+#addin "Cake.FileHelpers&version=3.3.0"
 #addin nuget:?package=AWSSDK.CloudFormation&version=3.3.100.3&loaddependencies=true
 #addin nuget:?package=AWSSDK.IdentityManagement&version=3.3.100.3&loaddependencies=true
 #addin nuget:?package=AWSSDK.SecurityToken&version=3.3.100.3&loaddependencies=true
@@ -38,6 +38,9 @@ var artifactsDir = Directory("./artifacts/");
 
 // VERBOSITY
 var dotNetCoreVerbosity = Cake.Common.Tools.DotNetCore.DotNetCoreVerbosity.Quiet;
+
+// TRUE IF EXECUTING ON CIRCLECI
+var isCircleCIBuild = !string.IsNullOrWhiteSpace(EnvironmentVariable("CIRCLECI"));
 
 AWSCredentials localAwsCredentials = null;
 AWSCredentials remoteAwsCredentials = null;
@@ -213,12 +216,13 @@ Task("Publish")
                 NoRestore = true,
                 OutputDirectory = outputDirectory,
                 Runtime = "linux-x64",
-                Verbosity = dotNetCoreVerbosity
+                Verbosity = dotNetCoreVerbosity,
+                PublishReadyToRun = isCircleCIBuild
             };
 
             Information("Publishing '{0}'...", projectName);
             DotNetCorePublish(project.FullPath, settings);
-            Information("'{0}' has been published.", projectName);
+            Information("'{0}' has been published, ReadyToRun: {1}", projectName, settings.PublishReadyToRun);
         }
     });
 
