@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace EventSauceApi.Controllers
 {
-    [Route("events/[controller]")]
-    public class ValuesController : Controller
+    [ApiVersion("1.0")]
+    [Route("v{version:apiVersion}/[controller]")]
+    public class EventController : ControllerBase
     {
         [HttpGet]
         public IEnumerable<string> Get()
@@ -31,6 +33,13 @@ namespace EventSauceApi.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        // ReSharper disable InconsistentNaming
+        public class Config : IOptions<Config>
+        {
+            public string SOME_ENV_VAR { get; set; }
+            public Config Value => this;
         }
     }
 }

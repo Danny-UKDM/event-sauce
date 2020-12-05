@@ -8,9 +8,11 @@
     <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
     <AssemblyName>EventSauceApi</AssemblyName>
     <RootNamespace>EventSauceApi</RootNamespace>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.3.101" />
     <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="5.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.2.0" />
   </ItemGroup>
 </Project>
