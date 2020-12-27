@@ -15,6 +15,7 @@ These instructions will get you a copy of the solution up and running on your lo
 * [Cake](https://cakebuild.net/docs/getting-started/setting-up-a-new-project#choose-your-runner)
 
 Note: Some environment dependencies can be installed simply using [Chocolatey](https://chocolatey.org/install).
+
 Example: `choco install dotnetcore-sdk docker-desktop python awscli`
 
 ### Using The Solution
