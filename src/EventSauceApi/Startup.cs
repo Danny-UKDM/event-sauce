@@ -1,23 +1,41 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Text.Json;
+using EventSauceApi.Controllers;
+using EventSauceApi.Extensions;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
+[assembly: ApiController]
 namespace EventSauceApi
 {
     public class Startup
     {
         public Startup(IConfiguration configuration) => Configuration = configuration;
 
-        public static IConfiguration Configuration { get; private set; }
+        private static IConfiguration Configuration { get; set; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddControllers();
+
+            services.AddMvcCore(options => options.UseGeneralRoutePrefix("api"))
+                    .AddDataAnnotations()
+                    .AddJsonOptions(options =>
+                        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase);
+
+            services.AddApiVersioning(options =>
+            {
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+            });
+
+            services.Configure<EventController.Config>(Configuration);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
@@ -25,7 +43,9 @@ namespace EventSauceApi
                 app.UseHsts();
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }

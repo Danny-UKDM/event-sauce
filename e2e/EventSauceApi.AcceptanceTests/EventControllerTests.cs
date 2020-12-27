@@ -3,7 +3,7 @@ using FluentAssertions;
 
 namespace EventSauceApi.AcceptanceTests
 {
-    public class ValuesControllerTests
+    public class EventControllerTests
     {
         [Fact]
         public void TrueIsTrue()

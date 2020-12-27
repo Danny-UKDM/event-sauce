@@ -3,7 +3,7 @@ using Xunit;
 
 namespace EventSauceApi.Tests
 {
-    public class ValuesControllerTests
+    public class EventControllerTests
     {
         [Fact]
         public void TrueIsTrue()

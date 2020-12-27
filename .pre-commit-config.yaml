@@ -1,21 +1,25 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.5.0
+    rev: v3.3.0
     hooks:
-      - id: check-json
-        exclude: \.vscode
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args:
+          - --fix=crlf
       - id: check-merge-conflict
-      - id: check-xml
-        files: \.csproj$
-        types: [file]
       - id: check-yaml
         args:
           - --unsafe
+      - id: check-xml
+        files: \.csproj$
+        types: [file]
+      - id: check-json
       - id: pretty-format-json
-        args: ["--autofix", "--indent=4"]
-        exclude: \.vscode
+        args:
+          - --autofix
   - repo: https://github.com/awslabs/cfn-python-lint
-    rev: v0.28.4
+    rev: v0.43.0
     hooks:
       - id: cfn-python-lint
         files: template.*\.yaml$

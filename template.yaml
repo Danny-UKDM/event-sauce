@@ -15,8 +15,8 @@ Resources:
     Properties:
       CodeUri: publish/EventSauceApi
       Handler: EventSauceApi::EventSauceApi.LambdaEntryPoint::FunctionHandlerAsync
-      Runtime: dotnetcore2.1
-      MemorySize: 256
+      Runtime: dotnetcore3.1
+      MemorySize: 128
       Timeout: 20
       Role:
         Fn::ImportValue:
