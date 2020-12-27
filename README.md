@@ -1,10 +1,10 @@
-# Event-Sauce [![CircleCI](https://circleci.com/gh/Danny-UKDM/event-sauce/tree/master.svg?style=svg&circle-token=41ca009b555604af36ce3887afa8e1cb64afb62c)](https://circleci.com/gh/Danny-UKDM/event-sauce/tree/master)
+# Event-Sauce [![CircleCI](https://circleci.com/gh/Danny-UKDM/event-sauce/tree/main.svg?style=svg&circle-token=41ca009b555604af36ce3887afa8e1cb64afb62c)](https://circleci.com/gh/Danny-UKDM/event-sauce/tree/main)
 
 Just playing with AWS Serverless and CQRS/Event Sourcing.
 
 ## Getting Started
 
-These instructions will get you a copy of the solution up and running on your local machine for development and testing purposes.
+These instructions will get you a copy of the solution up and running on your local machine for development and testing.
 
 ### Prerequisites
 
@@ -12,7 +12,10 @@ These instructions will get you a copy of the solution up and running on your lo
 * [Docker](https://docs.docker.com/docker-for-windows/)
 * [AWS CLI](https://aws.amazon.com/cli/)
 * [SAM Local](https://github.com/awslabs/aws-sam-cli)
-* Cake installed - `dotnet tool install -g --version 0.33.0 Cake.Tool`
+* [Cake](https://cakebuild.net/docs/getting-started/setting-up-a-new-project#choose-your-runner)
+
+Note: Some environment dependencies can be installed simply using [Chocolatey](https://chocolatey.org/install).
+Example: `choco install dotnetcore-sdk docker-desktop python awscli`
 
 ### Using The Solution
 
@@ -33,7 +36,6 @@ Running the API locally will provision necessary infrastructure before making th
 * [AWS Lambda for .NET Core](https://github.com/aws/aws-lambda-dotnet) 👨‍💻
 * [Cake](https://cakebuild.net/) 🏗
 * [Docker](https://docs.docker.com/docker-for-windows/) 🐳
-* [Fluent Assertions](https://fluentassertions.com/) 🧪
 * [LocalStack](https://github.com/localstack/localstack) ☁
 
 ## License
