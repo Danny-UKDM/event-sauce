@@ -6,9 +6,14 @@ internal static class EventsResponseMapper
 {
     public static IEnumerable<EventResponse> Map(IEnumerable<EventEntity> eventEntities)
     {
+        var eventEntitiesArray = eventEntities as EventEntity[] ?? eventEntities.ToArray();
+
+        if (!eventEntitiesArray.Any())
+            return Enumerable.Empty<EventResponse>();
+
         var eventsResponse = new List<EventResponse>();
 
-        eventsResponse.AddRange(eventEntities.Select(entity =>
+        eventsResponse.AddRange(eventEntitiesArray.Select(entity =>
         {
             var what = new What(entity.Detail, entity.RiskFactor);
             var when = new When(entity.OccurredOn, entity.CreatedOn);

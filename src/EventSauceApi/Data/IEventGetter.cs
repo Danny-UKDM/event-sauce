@@ -4,5 +4,5 @@ namespace EventSauceApi.Data;
 
 public interface IEventGetter
 {
-    Task<(bool querySuccess , List<EventEntity> results)> GetAllAsync();
+    Task<(bool querySuccess , IReadOnlyList<EventEntity> results)> GetAllAsync();
 }

@@ -16,7 +16,7 @@ internal class EventGetter : IEventGetter
         _logger = logger;
     }
 
-    public async Task<(bool querySuccess, List<EventEntity> results)> GetAllAsync()
+    public async Task<(bool querySuccess, IReadOnlyList<EventEntity> results)> GetAllAsync()
     {
         try
         {

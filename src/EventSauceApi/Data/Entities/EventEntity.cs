@@ -6,12 +6,13 @@ namespace EventSauceApi.Data.Entities;
 [DynamoDBTable("event-sauce-events")]
 public record EventEntity : DynamoEntity
 {
-    public Guid Id { get; set; }
+    public string EventType { get; set; } = "EVENT";
+    public string Id { get; set; } = Guid.Empty.ToString();
     public DateTime CreatedOn { get; set; }
     public DateTime OccurredOn { get; set; }
     public string Detail { get; set; } = string.Empty;
     public RiskFactor RiskFactor { get; set; }
-    public Guid LocationId { get; set; }
+    public string LocationId { get; set; } = Guid.Empty.ToString();
     public string Area { get; set; } = string.Empty;
     public string Sector { get; set; } = string.Empty;
     public string Domain { get; set; } = string.Empty;
@@ -19,7 +20,7 @@ public record EventEntity : DynamoEntity
 
     public record Person
     {
-        public Guid PersonId { get; set; }
+        public string PersonId { get; set; } = Guid.Empty.ToString();
         public string Name { get; set; } = string.Empty;
         public string EmailAddress { get; set; } = string.Empty;
     }
