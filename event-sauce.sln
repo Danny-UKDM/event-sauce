@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9C56E138-3EE2-4591-9B09-8700EFFE0876}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSauceApi", "src\EventSauceApi\EventSauceApi.csproj", "{8D9E8410-0214-4123-B2A3-9872F069A409}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{206A4A63-4A78-4D91-AEB3-66E37C14DA8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSauceApi.Tests", "test\EventSauceApi.Tests\EventSauceApi.Tests.csproj", "{13A5326C-7795-4B7E-A040-304A06A0EEC7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "e2e", "e2e", "{95D344D7-CCA0-4E3E-8B4D-A8DBD9A125ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSauceApi.AcceptanceTests", "e2e\EventSauceApi.AcceptanceTests\EventSauceApi.AcceptanceTests.csproj", "{DA6937D7-7D50-42BC-876E-C8B361522227}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D9E8410-0214-4123-B2A3-9872F069A409}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D9E8410-0214-4123-B2A3-9872F069A409}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D9E8410-0214-4123-B2A3-9872F069A409}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D9E8410-0214-4123-B2A3-9872F069A409}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13A5326C-7795-4B7E-A040-304A06A0EEC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13A5326C-7795-4B7E-A040-304A06A0EEC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13A5326C-7795-4B7E-A040-304A06A0EEC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13A5326C-7795-4B7E-A040-304A06A0EEC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA6937D7-7D50-42BC-876E-C8B361522227}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA6937D7-7D50-42BC-876E-C8B361522227}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA6937D7-7D50-42BC-876E-C8B361522227}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA6937D7-7D50-42BC-876E-C8B361522227}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8D9E8410-0214-4123-B2A3-9872F069A409} = {9C56E138-3EE2-4591-9B09-8700EFFE0876}
+		{13A5326C-7795-4B7E-A040-304A06A0EEC7} = {206A4A63-4A78-4D91-AEB3-66E37C14DA8D}
+		{DA6937D7-7D50-42BC-876E-C8B361522227} = {95D344D7-CCA0-4E3E-8B4D-A8DBD9A125ED}
+	EndGlobalSection
+EndGlobal
