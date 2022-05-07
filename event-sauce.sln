@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "e2e", "e2e", "{95D344D7-CCA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSauceApi.AcceptanceTests", "e2e\EventSauceApi.AcceptanceTests\EventSauceApi.AcceptanceTests.csproj", "{DA6937D7-7D50-42BC-876E-C8B361522227}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{8F6F9075-DFFB-4851-84B3-A16A54FA4A2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F6F9075-DFFB-4851-84B3-A16A54FA4A2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F6F9075-DFFB-4851-84B3-A16A54FA4A2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D9E8410-0214-4123-B2A3-9872F069A409}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8D9E8410-0214-4123-B2A3-9872F069A409}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D9E8410-0214-4123-B2A3-9872F069A409}.Release|Any CPU.ActiveCfg = Release|Any CPU
