@@ -55,7 +55,7 @@ class Build : NukeBuild
                 .SetConfiguration(Configuration)
                 .EnableNoRestore());
         });
-    
+
     Target Test => _ => _
         .DependsOn(Compile)
         .Executes(() =>
@@ -86,15 +86,15 @@ class Build : NukeBuild
             CancellationToken = cancellationToken
         };
 
-        Parallel.Invoke(options, files.Select(file => 
-            (Action)(() => 
-            { 
+        Parallel.Invoke(options, files.Select(file =>
+            (Action)(() =>
+            {
                 DotNetClean(s => s
                     .SetProject(file)
-                    .SetVerbosity(DotNetVerbosity.Quiet)); 
+                    .SetVerbosity(DotNetVerbosity.Quiet));
             })).ToArray());
     }
-    
+
     static void TestInParallel(
         IEnumerable<AbsolutePath> files,
         int maxDegreeOfParallelism = -1,
@@ -105,13 +105,13 @@ class Build : NukeBuild
             CancellationToken = cancellationToken
         };
 
-        Parallel.Invoke(options, files.Select(file => 
-            (Action)(() => 
-            { 
+        Parallel.Invoke(options, files.Select(file =>
+            (Action)(() =>
+            {
                 DotNetTest(s => s
                     .SetProjectFile(file)
                     .EnableNoRestore()
-                    .EnableNoBuild()); 
+                    .EnableNoBuild());
             })).ToArray());
     }
 }
