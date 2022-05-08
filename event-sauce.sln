@@ -17,6 +17,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSauceApi.AcceptanceTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{8F6F9075-DFFB-4851-84B3-A16A54FA4A2D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_solution", "_solution", "{48A1CB84-9C5F-47C8-B36B-2A6B492594E5}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		global.json = global.json
+		.gitignore = .gitignore
+		.pre-commit-config.yaml = .pre-commit-config.yaml
+		build.cmd = build.cmd
+		build.ps1 = build.ps1
+		build.sh = build.sh
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
