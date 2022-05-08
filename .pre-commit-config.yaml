@@ -4,9 +4,6 @@ repos:
     hooks:
       - id: check-json
         exclude: \.vscode
-      - id: pretty-format-json
-        args:
-          - --autofix
       - id: check-xml
         files: \.csproj$
         types: [file]

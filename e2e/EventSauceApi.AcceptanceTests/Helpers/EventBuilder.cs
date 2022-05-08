@@ -5,9 +5,9 @@ using EventSauceApi.Data.Entities;
 using EventSauceApi.Models;
 using EventSauceApi.Models.Response;
 
-namespace EventSauceApi.Tests.Helpers;
+namespace EventSauceApi.AcceptanceTests.Helpers;
 
-internal class EventBuilder
+public class EventBuilder
 {
     private readonly string _id;
     private readonly DateTime _createdOn;
