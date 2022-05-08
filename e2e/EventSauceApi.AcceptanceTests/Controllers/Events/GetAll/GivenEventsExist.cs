@@ -18,7 +18,7 @@ public class GivenEventsExist : IClassFixture<GivenEventsExist.Invocation>
         public (EventEntity entity, EventResponse response) Event1;
         public (EventEntity entity, EventResponse response) Event2;
         public (EventEntity entity, EventResponse response) Event3;
-        public HttpResponseMessage Response;
+        public HttpResponseMessage Response = new();
 
         private readonly ApiApplicationFactory _fixture;
 

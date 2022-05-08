@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  event-sauce-api:
+    image: event-sauce/event-sauce-api:latest
+    ports:
+      - "3000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - AWS_ACCESS_KEY_ID=localstack
+      - AWS_SECRET_ACCESS_KEY=localstack
+    depends_on:
+      - localstack
+    restart: unless-stopped
+  localstack:
+    image: localstack/localstack:latest-arm64
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=${SERVICES-dynamodb}
+      - DEBUG=${DEBUG- }
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DEFAULT_REGION=eu-west-1
+    restart: unless-stopped
+  dockerhost:
+    image: qoomon/docker-host
+    cap_add: [ 'NET_ADMIN', 'NET_RAW' ]
+    restart: on-failure

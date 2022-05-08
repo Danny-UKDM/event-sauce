@@ -14,14 +14,14 @@ public record EventEntity : DynamoEntity
     public string Area { get; set; } = string.Empty;
     public string Sector { get; set; } = string.Empty;
     public string Domain { get; set; } = string.Empty;
-    public IEnumerable<Person> People { get; set; } = Enumerable.Empty<Person>();
+    public Person[] People { get; set; } = Array.Empty<Person>();
+}
 
-    public record Person
-    {
-        public string PersonId { get; set; } = Guid.Empty.ToString();
-        public string Name { get; set; } = string.Empty;
-        public string EmailAddress { get; set; } = string.Empty;
-    }
+public record Person
+{
+    public string PersonId { get; set; } = Guid.Empty.ToString();
+    public string Name { get; set; } = string.Empty;
+    public string EmailAddress { get; set; } = string.Empty;
 }
 
 public static class EventEntityExtensions

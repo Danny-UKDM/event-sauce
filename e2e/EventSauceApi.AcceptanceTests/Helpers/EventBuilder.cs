@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using EventSauceApi.Data.Entities;
 using EventSauceApi.Models;
 using EventSauceApi.Models.Response;
+using Person = EventSauceApi.Data.Entities.Person;
+using ResponsePerson = EventSauceApi.Models.Response.Person;
 
 namespace EventSauceApi.AcceptanceTests.Helpers;
 
@@ -18,7 +19,7 @@ public class EventBuilder
     private readonly string _area;
     private readonly string _sector;
     private readonly string _domain;
-    private readonly List<EventEntity.Person> _people;
+    private readonly Person[] _people;
 
     private EventBuilder(RiskFactor riskFactor)
     {
@@ -31,7 +32,7 @@ public class EventBuilder
         _area = $"Some Cool Area {Guid.NewGuid():N}";
         _sector = $"Some Cool Sector {Guid.NewGuid():N}";
         _domain = $"Some Cool Domain {Guid.NewGuid():N}";
-        _people = new List<EventEntity.Person>
+        _people = new Person[]
         {
             new()
             {
@@ -75,6 +76,6 @@ public class EventBuilder
             new What(_detail, _riskFactor),
             new When(_occurredOn, _createdOn),
             new Where(_area, _sector, _domain),
-            new Who(_people.Select(person => new Person(person.Name, person.EmailAddress))))
+            new Who(_people.Select(person => new ResponsePerson(person.Name, person.EmailAddress))))
     );
 }

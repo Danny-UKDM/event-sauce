@@ -73,7 +73,9 @@
             "enum": [
               "Clean",
               "Compile",
-              "Pack",
+              "LocalAwsDown",
+              "LocalAwsUp",
+              "Publish",
               "Restore",
               "Test"
             ]
@@ -91,7 +93,9 @@
             "enum": [
               "Clean",
               "Compile",
-              "Pack",
+              "LocalAwsDown",
+              "LocalAwsUp",
+              "Publish",
               "Restore",
               "Test"
             ]

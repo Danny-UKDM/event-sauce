@@ -1,0 +1,9 @@
+.dockerignore
+.*/
+Dockerfile
+artifacts/
+e2e/
+publish/
+infrastructure/docker-compose.yml
+**/bin/
+**/obj/
